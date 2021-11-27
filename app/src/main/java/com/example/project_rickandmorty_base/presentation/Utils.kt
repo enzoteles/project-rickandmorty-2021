@@ -1,0 +1,2 @@
+package com.example.project_rickandmorty_base.presentation
+
