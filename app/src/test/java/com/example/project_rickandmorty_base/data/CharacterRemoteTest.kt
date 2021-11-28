@@ -5,6 +5,9 @@ import com.example.project_rickandmorty_base.data.remote.character_detail.Locati
 import com.example.project_rickandmorty_base.data.remote.character_detail.OriginRemote
 import com.example.project_rickandmorty_base.data.remote.list_characters.InfoRemote
 import com.example.project_rickandmorty_base.data.remote.list_characters.ListCharactersRemote
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.ResponseBody.Companion.toResponseBody
+import retrofit2.Response
 
 object CharacterRemoteTest {
 
@@ -37,6 +40,48 @@ object CharacterRemoteTest {
         ),
         results = listOf(characterById)
     )
+
+    suspend fun getError500(): Response<ListCharactersRemote> {
+        val errorResponse =
+            " {\n" +
+                    " \"title\": \"error\",\n"+
+                    " \"message\": \"Server Error\"\n"+
+                    "}"
+
+        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
+        return Response.error(
+            500,
+            errorResponseBody
+        )
+    }
+
+    suspend fun getError404(): Response<ListCharactersRemote> {
+        val errorResponse =
+            " {\n" +
+                    " \"title\": \"error\",\n"+
+                    " \"message\": \"Not Found\"\n"+
+                    "}"
+
+        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
+        return Response.error(
+            404,
+            errorResponseBody
+        )
+    }
+
+    suspend fun getError502(): Response<ListCharactersRemote> {
+        val errorResponse =
+            " {\n" +
+                    " \"title\": \"error\",\n"+
+                    " \"message\": \"Bad Request\"\n"+
+                    "}"
+
+        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
+        return Response.error(
+            502,
+            errorResponseBody
+        )
+    }
 
 
 }
