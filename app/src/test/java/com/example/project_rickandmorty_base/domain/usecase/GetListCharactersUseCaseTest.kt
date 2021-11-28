@@ -72,8 +72,7 @@ class GetListCharactersUseCaseTest{
      fun `checking error 500 of api`():Unit = runBlocking{
 
         val error = repository.getError500()
-        val reader = InputStreamReader(error.errorBody()?.byteStream())
-        val errorMessage = gson.fromJson(reader, ErrorMessage::class.java)
+        val errorMessage = gson.fromJson(InputStreamReader(error.errorBody()?.byteStream()), ErrorMessage::class.java)
 
         assertThat(error.code()).isEqualTo(500)
         assertThat(error.message()).isEqualTo("Response.error()")
@@ -84,8 +83,7 @@ class GetListCharactersUseCaseTest{
     fun `checking error 502 of api`():Unit = runBlocking{
 
         val error = repository.getError502()
-        val reader = InputStreamReader(error.errorBody()?.byteStream())
-        val errorMessage = gson.fromJson(reader, ErrorMessage::class.java)
+        val errorMessage = gson.fromJson(InputStreamReader(error.errorBody()?.byteStream()), ErrorMessage::class.java)
 
         assertThat(error.code()).isEqualTo(502)
         assertThat(error.message()).isEqualTo("Response.error()")
@@ -96,8 +94,7 @@ class GetListCharactersUseCaseTest{
     fun `checking error 404 of api`():Unit = runBlocking{
 
         val error = repository.getError404()
-        val reader = InputStreamReader(error.errorBody()?.byteStream())
-        val errorMessage = gson.fromJson(reader, ErrorMessage::class.java)
+        val errorMessage = gson.fromJson(InputStreamReader(error.errorBody()?.byteStream()), ErrorMessage::class.java)
 
         assertThat(error.code()).isEqualTo(404)
         assertThat(error.message()).isEqualTo("Response.error()")
