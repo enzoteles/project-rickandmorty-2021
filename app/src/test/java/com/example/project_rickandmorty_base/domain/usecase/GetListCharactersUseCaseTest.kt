@@ -49,56 +49,46 @@ class GetListCharactersUseCaseTest{
 
         assertThat(characterSchema.code()).isEqualTo(200)
         assertThat(characterSchema.message()).isEqualTo("OK")
-
-        assertThat(characterFirstItem?.id).isEqualTo(2)
-        assertThat(characterFirstItem?.name).isEqualTo("Morty Smith")
+        assertThat(characterFirstItem?.id).isEqualTo(1)
+        assertThat(characterFirstItem?.name).isEqualTo("Rick Sanchez")
         assertThat(characterFirstItem?.status).isEqualTo("Alive")
         assertThat(characterFirstItem?.species).isEqualTo("Human")
         assertThat(characterFirstItem?.gender).isEqualTo("Male")
-
-        assertThat(characterFirstItem?.originRemote?.name).isEqualTo("Earth")
-        assertThat(characterFirstItem?.originRemote?.url).isEqualTo("https://rickandmortyapi.com/api/location/1")
-
-        assertThat(characterFirstItem?.locationRemote?.name).isEqualTo("Earth")
-        assertThat(characterFirstItem?.locationRemote?.url).isEqualTo("https://rickandmortyapi.com/api/location/2")
-
-        assertThat(characterFirstItem?.image).isEqualTo("https://rickandmortyapi.com/api/character/avatar/2.jpeg")
-        assertThat(characterFirstItem?.url).isEqualTo("https://rickandmortyapi.com/api/character/2")
-        assertThat(characterFirstItem?.created).isEqualTo("created\": \"2017-11-04T18:50:21.651Z")
+        assertThat(characterFirstItem?.image).isEqualTo("https://rickandmortyapi.com/api/character/avatar/1.jpeg")
+        assertThat(characterFirstItem?.url).isEqualTo("https://rickandmortyapi.com/api/character/1")
+        assertThat(characterFirstItem?.created).isEqualTo("2017-11-04T18:48:46.250Z")
 
     }
 
     @Test
      fun `checking error 500 of api`():Unit = runBlocking{
 
-        val error = repository.getError500()
-        val errorMessage = gson.fromJson(InputStreamReader(error.errorBody()?.byteStream()), ErrorMessage::class.java)
+        val errorMessage = gson.fromJson(ClassLoader.getSystemResource("error/error500.json").readText(), ErrorMessage::class.java)
 
-        assertThat(error.code()).isEqualTo(500)
-        assertThat(error.message()).isEqualTo("Response.error()")
+        assertThat(errorMessage.code).isEqualTo(500)
+        assertThat(errorMessage.title).isEqualTo("Error")
         assertThat(errorMessage.message).isEqualTo("Server Error")
     }
 
     @Test
     fun `checking error 502 of api`():Unit = runBlocking{
 
-        val error = repository.getError502()
-        val errorMessage = gson.fromJson(InputStreamReader(error.errorBody()?.byteStream()), ErrorMessage::class.java)
+        val errorMessage = gson.fromJson(ClassLoader.getSystemResource("error/error502.json").readText(), ErrorMessage::class.java)
 
-        assertThat(error.code()).isEqualTo(502)
-        assertThat(error.message()).isEqualTo("Response.error()")
+        assertThat(errorMessage.code).isEqualTo(502)
+        assertThat(errorMessage.title).isEqualTo("Error")
         assertThat(errorMessage.message).isEqualTo("Bad Request")
     }
 
     @Test
     fun `checking error 404 of api`():Unit = runBlocking{
 
-        val error = repository.getError404()
-        val errorMessage = gson.fromJson(InputStreamReader(error.errorBody()?.byteStream()), ErrorMessage::class.java)
+        val errorMessage = gson.fromJson(ClassLoader.getSystemResource("error/error404.json").readText(), ErrorMessage::class.java)
 
-        assertThat(error.code()).isEqualTo(404)
-        assertThat(error.message()).isEqualTo("Response.error()")
+        assertThat(errorMessage.code).isEqualTo(404)
+        assertThat(errorMessage.title).isEqualTo("Error")
         assertThat(errorMessage.message).isEqualTo("Not Found")
+
     }
 
 }
