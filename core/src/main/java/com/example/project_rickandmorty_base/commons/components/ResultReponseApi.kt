@@ -25,5 +25,4 @@ fun<T> result(call: suspend ()-> Response<T>): Flow<ApiResponse<T?>> = flow {
         t.printStackTrace()
         emit(ApiResponse.Failure(t.message.toString()))
     }
-
 }

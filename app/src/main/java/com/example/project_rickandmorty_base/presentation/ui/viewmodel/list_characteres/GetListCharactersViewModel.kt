@@ -25,7 +25,7 @@ class GetListCharactersViewModel @Inject constructor(
         getListCharacters()
     }
 
-    fun getListCharacters() {
+    private fun getListCharacters() {
         getListCharactersUseCase.invoke().onEach { result ->
 
             when (result) {

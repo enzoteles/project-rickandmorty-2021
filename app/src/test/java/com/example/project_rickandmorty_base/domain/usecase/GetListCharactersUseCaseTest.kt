@@ -45,10 +45,17 @@ class GetListCharactersUseCaseTest{
     fun `checking status 200 of api`(): Unit = runBlocking {
 
         val characterSchema = repository.getListCharacters()
+        val characterInfo = characterSchema.body()
         val characterFirstItem = characterSchema.body()?.results?.first()
 
         assertThat(characterSchema.code()).isEqualTo(200)
         assertThat(characterSchema.message()).isEqualTo("OK")
+
+        assertThat(characterInfo?.info?.next).isEqualTo("https://rickandmortyapi.com/api/character/?page=2")
+        assertThat(characterInfo?.info?.count).isEqualTo(826)
+        assertThat(characterInfo?.info?.pages).isEqualTo(42)
+
+
         assertThat(characterFirstItem?.id).isEqualTo(1)
         assertThat(characterFirstItem?.name).isEqualTo("Rick Sanchez")
         assertThat(characterFirstItem?.status).isEqualTo("Alive")
@@ -57,6 +64,11 @@ class GetListCharactersUseCaseTest{
         assertThat(characterFirstItem?.image).isEqualTo("https://rickandmortyapi.com/api/character/avatar/1.jpeg")
         assertThat(characterFirstItem?.url).isEqualTo("https://rickandmortyapi.com/api/character/1")
         assertThat(characterFirstItem?.created).isEqualTo("2017-11-04T18:48:46.250Z")
+
+        assertThat(characterFirstItem?.location?.name).isEqualTo("Earth")
+        assertThat(characterFirstItem?.location?.url).isEqualTo("https://rickandmortyapi.com/api/location/20")
+
+        assertThat(characterFirstItem?.episode?.size).isEqualTo(2)
 
     }
 

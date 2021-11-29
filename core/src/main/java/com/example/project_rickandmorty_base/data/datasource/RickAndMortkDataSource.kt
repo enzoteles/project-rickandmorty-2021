@@ -1,7 +1,7 @@
 package com.example.project_rickandmorty_base.data.datasource
 
-import com.example.project_rickandmorty_base.data.remote.character_detail.CharacterRemote
-import com.example.project_rickandmorty_base.data.remote.list_characters.ListCharactersRemote
+import com.example.project_rickandmorty_base.data.remote.character_detail.Character
+import com.example.project_rickandmorty_base.data.remote.list_characters.ListCharacters
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,16 +12,16 @@ interface RickAndMortkDataSource {
     @GET("character/{character-id}")
     suspend fun getCharacterDetail(
         @Path("character-id") characterId: Int
-    ): Response<CharacterRemote>
+    ): Response<Character>
 
     @GET("character")
     suspend fun getListCharacters(
-    ): Response<ListCharactersRemote>
+    ): Response<ListCharacters>
 
     @GET("character")
     suspend fun getCharactersPage(
         @Query("page") pageIndex: Int
-    ): Response<ListCharactersRemote>
+    ): Response<ListCharacters>
 
     @GET("character/")
     suspend fun getCharacterFilter(
@@ -30,6 +30,6 @@ interface RickAndMortkDataSource {
         @Query("species") species: String?=null,
         @Query("type") type: String?=null,
         @Query("gender") gender: String?=null,
-    ): Response<ListCharactersRemote>
+    ): Response<ListCharacters>
 
 }

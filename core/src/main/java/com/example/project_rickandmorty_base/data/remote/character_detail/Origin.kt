@@ -2,12 +2,12 @@ package com.example.project_rickandmorty_base.data.remote.character_detail
 
 import com.example.project_rickandmorty_base.domain.model.character_detail.OriginMapper
 
-data class OriginRemote(
+data class Origin(
     val name: String,
     val url: String
 )
 
-fun OriginRemote.toOrigin() = OriginMapper(
+fun Origin.toOrigin() = OriginMapper(
     name = name,
     url = url
 )
