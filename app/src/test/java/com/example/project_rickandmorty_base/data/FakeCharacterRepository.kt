@@ -11,8 +11,8 @@ import retrofit2.Response
 
 class FakeCharacterRepository: CharacterRepository{
 
-    val listCharacterResponse = Gson().fromJson(ClassLoader.getSystemResource("character/listCharacters.json").readText(), ListCharactersRemote::class.java)
-    val character = Gson().fromJson(ClassLoader.getSystemResource("character/listCharacters.json").readText(), CharacterRemote::class.java)
+    private val listCharacterResponse = Gson().fromJson(ClassLoader.getSystemResource("character/listCharacters.json").readText(), ListCharactersRemote::class.java)
+    private val character = Gson().fromJson(ClassLoader.getSystemResource("character/characterById.json").readText(), CharacterRemote::class.java)
 
     override suspend fun getCharacterDetail(characterId: Int): Response<CharacterRemote> {
         return Response.success(character)
