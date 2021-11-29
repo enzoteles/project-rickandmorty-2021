@@ -132,7 +132,7 @@ fun CharacterListItem(item: CharacterMapper, onClick: (String) -> Unit) {
 
             ) {
                 Surface(
-                    color = Color(0xFF80cbc4),
+                    color = Color.Black.copy(alpha = 0.7f),
                     modifier = Modifier
                         .height(30.dp),
                 ) {
@@ -143,7 +143,8 @@ fun CharacterListItem(item: CharacterMapper, onClick: (String) -> Unit) {
                         maxLines = 1,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                     )
                 }
 
