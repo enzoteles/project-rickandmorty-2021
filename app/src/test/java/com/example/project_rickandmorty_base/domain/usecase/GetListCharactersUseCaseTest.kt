@@ -63,9 +63,11 @@ class GetListCharactersUseCaseTest{
     @Test
      fun `checking error 500 of api`():Unit = runBlocking{
 
-        val errorMessage = gson.fromJson(ClassLoader.getSystemResource("error/error500.json").readText(), ErrorMessage::class.java)
+        val characterSchema = repository.getError500()
+        val errorMessage = gson.fromJson(characterSchema.errorBody()?.charStream(), ErrorMessage::class.java)
 
-        assertThat(errorMessage.code).isEqualTo(500)
+        assertThat(characterSchema.code()).isEqualTo(500)
+        assertThat(characterSchema.message()).isEqualTo("Response.error()")
         assertThat(errorMessage.title).isEqualTo("Error")
         assertThat(errorMessage.message).isEqualTo("Server Error")
     }
@@ -73,9 +75,11 @@ class GetListCharactersUseCaseTest{
     @Test
     fun `checking error 502 of api`():Unit = runBlocking{
 
-        val errorMessage = gson.fromJson(ClassLoader.getSystemResource("error/error502.json").readText(), ErrorMessage::class.java)
+        val characterSchema = repository.getError502()
+        val errorMessage = gson.fromJson(characterSchema.errorBody()?.charStream(), ErrorMessage::class.java)
 
-        assertThat(errorMessage.code).isEqualTo(502)
+        assertThat(characterSchema.code()).isEqualTo(502)
+        assertThat(characterSchema.message()).isEqualTo("Response.error()")
         assertThat(errorMessage.title).isEqualTo("Error")
         assertThat(errorMessage.message).isEqualTo("Bad Request")
     }
@@ -83,12 +87,16 @@ class GetListCharactersUseCaseTest{
     @Test
     fun `checking error 404 of api`():Unit = runBlocking{
 
-        val errorMessage = gson.fromJson(ClassLoader.getSystemResource("error/error404.json").readText(), ErrorMessage::class.java)
+        val characterSchema = repository.getError404()
+        val errorMessage = gson.fromJson(characterSchema.errorBody()?.charStream(), ErrorMessage::class.java)
 
-        assertThat(errorMessage.code).isEqualTo(404)
+        assertThat(characterSchema.code()).isEqualTo(404)
+        assertThat(characterSchema.message()).isEqualTo("Response.error()")
         assertThat(errorMessage.title).isEqualTo("Error")
         assertThat(errorMessage.message).isEqualTo("Not Found")
 
     }
+
+
 
 }

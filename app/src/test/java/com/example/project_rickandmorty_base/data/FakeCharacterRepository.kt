@@ -36,4 +36,22 @@ class FakeCharacterRepository: CharacterRepository{
         return Response.success(listCharacterResponse)
     }
 
+    suspend fun getError500(): Response<ListCharactersRemote>{
+        val errorResponse = ClassLoader.getSystemResource("error/error500.json").readText()
+        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
+        return  Response.error(500, errorResponseBody)
+    }
+
+    suspend fun getError502(): Response<ListCharactersRemote>{
+        val errorResponse = ClassLoader.getSystemResource("error/error502.json").readText()
+        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
+        return  Response.error(502, errorResponseBody)
+    }
+
+    suspend fun getError404(): Response<ListCharactersRemote>{
+        val errorResponse = ClassLoader.getSystemResource("error/error404.json").readText()
+        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
+        return  Response.error(404, errorResponseBody)
+    }
+
 }
