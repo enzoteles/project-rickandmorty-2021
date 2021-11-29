@@ -96,7 +96,4 @@ class GetListCharactersUseCaseTest{
         assertThat(errorMessage.message).isEqualTo("Not Found")
 
     }
-
-
-
 }
