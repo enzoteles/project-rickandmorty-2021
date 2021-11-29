@@ -1,7 +1,9 @@
 package com.example.project_rickandmorty_base.presentation.di
 
+import androidx.paging.PagingSource
 import com.example.project_rickandmorty_base.commons.utils.Constants
 import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSource
+import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,12 +26,18 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMarvelApi(): RickAndMortkDataSource {
+    fun provideMarvelApi(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
             .client(getHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(RickAndMortkDataSource::class.java)
+
     }
+
+    @Provides
+    @Singleton
+    fun  apiService(): RickAndMortkDataSource = provideMarvelApi().create(RickAndMortkDataSource::class.java)
+
 }
+

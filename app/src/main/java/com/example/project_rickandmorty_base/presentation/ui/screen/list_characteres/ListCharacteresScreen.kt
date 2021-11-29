@@ -1,13 +1,11 @@
 package com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,20 +13,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.PagingData
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.list_characters.GetListCharactersState
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
-import com.example.projeto_marvel.presentation.ui.theme.MediumTranparent
+import kotlinx.coroutines.flow.Flow
 
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
 fun ListCharacterScreen(
@@ -36,9 +36,10 @@ fun ListCharacterScreen(
     nameScreen: (String) -> Unit
 ) {
     val state = viewModel.state.value
+    val dataSource = viewModel.character
     Scaffold(
         topBar = { TopBarListCharacter() },
-        content = { ListCharacterLazyCollun(state = state, nameScreen = nameScreen) },
+        content = { ListCharacterLazyCollun(dataSource = dataSource, state = state, nameScreen = nameScreen) },
     )
 
 }
@@ -57,9 +58,16 @@ fun TopBarListCharacter() {
 }
 
 
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun ListCharacterLazyCollun(state: GetListCharactersState, nameScreen: (String) -> Unit) {
+fun ListCharacterLazyCollun(
+    dataSource: Flow<PagingData<CharacterMapper>>,
+    state: GetListCharactersState,
+    nameScreen: (String) -> Unit
+) {
+    val characterListItem: LazyPagingItems<CharacterMapper> = dataSource.collectAsLazyPagingItems()
+
     Box(modifier = Modifier.fillMaxSize()) {
         //loading
         if (state.isLoadding) {
@@ -69,13 +77,15 @@ fun ListCharacterLazyCollun(state: GetListCharactersState, nameScreen: (String) 
         LazyVerticalGrid(
             cells = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp)
-        ) {
-            items(state.data?.results ?: listOf()) { item ->
-                CharacterListItem(item) {
-                    nameScreen(Screen.CharacterDetailScreen.route + "/$item.id")
+        ){
+            items(characterListItem.itemCount){ index->
+                val character = characterListItem[index]
+                CharacterListItem(character) {
+                    nameScreen(Screen.CharacterDetailScreen.route + "/$character.id")
                 }
             }
         }
+
         //error
         if (state.error.isNotBlank()) {
             Text(
@@ -94,7 +104,7 @@ fun ListCharacterLazyCollun(state: GetListCharactersState, nameScreen: (String) 
 
 @ExperimentalCoilApi
 @Composable
-fun CharacterListItem(item: CharacterMapper, onClick: (String) -> Unit) {
+fun CharacterListItem(item: CharacterMapper?, onClick: (String) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,7 +125,7 @@ fun CharacterListItem(item: CharacterMapper, onClick: (String) -> Unit) {
         ) {
             //Coil Image
             Image(
-                painter = rememberImagePainter(item.image),
+                painter = rememberImagePainter(item?.image),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -132,18 +142,19 @@ fun CharacterListItem(item: CharacterMapper, onClick: (String) -> Unit) {
 
             ) {
                 Surface(
-                    color = Color(0xFF80cbc4),
+                    color = Color.Black.copy(alpha = 0.7f),
                     modifier = Modifier
                         .height(30.dp),
                 ) {
                     Text(
-                        text = item.name,
+                        text = item?.name ?: "",
                         modifier = Modifier
                             .fillMaxWidth(),
                         maxLines = 1,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                     )
                 }
 

@@ -1,23 +1,17 @@
 package com.example.project_rickandmorty_base.presentation.ui.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import coil.annotation.ExperimentalCoilApi
+import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSource
 import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.ListCharacterScreen
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
 
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
 internal fun MainNavGraph() {
