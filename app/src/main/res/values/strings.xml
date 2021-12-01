@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">project-rickandmorty-base</string>
+    <string name="list_screen">List of Characters</string>
+    <string name="detail_screen">Character Detail</string>
 </resources>

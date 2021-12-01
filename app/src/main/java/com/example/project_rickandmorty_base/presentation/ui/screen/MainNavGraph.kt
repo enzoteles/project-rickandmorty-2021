@@ -2,12 +2,22 @@ package com.example.project_rickandmorty_base.presentation.ui.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.Constraints
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
-import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSource
+import com.example.project_rickandmorty_base.commons.utils.Constants
+import com.example.project_rickandmorty_base.data.remote.character_detail.toCharacter
+import com.example.project_rickandmorty_base.data.remote.list_characters.ListCharacters
+import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
+import com.example.project_rickandmorty_base.domain.model.list_characters.ListCharactersMapper
+import com.example.project_rickandmorty_base.presentation.ui.screen.character_detail.CharacterDetailScreen
 import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.ListCharacterScreen
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
 
@@ -24,22 +34,11 @@ internal fun MainNavGraph() {
                 navController.navigate(nameScreen)
             }
         }
-        /*composable(
-            route = Screen.CommicsDetailScreen.route + "/{index}",
-            arguments = listOf(
-                navArgument("index"){
-                    type = NavType.IntType
-                }
-            )
-        ){ entry->
-            val index = entry.arguments?.getInt("index") ?: 0
-            viewModel.state.value?.commics?.data?.results?.let { listCharacter ->
-                val character = listCharacter[index]
-                DetailCharacter(character = character){
-                    navController.popBackStack()
-                }
-            }
-        }*/
+        composable(
+            route = Screen.CharacterDetailScreen.route + "/{characterId}",
+        ){
+            CharacterDetailScreen()
+        }
     }
 }
 
