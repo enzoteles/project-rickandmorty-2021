@@ -1,10 +1,11 @@
-package com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres
+package com.example.project_rickandmorty_base.presentation.ui.screen.character_detail
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import coil.annotation.ExperimentalCoilApi
@@ -22,12 +23,12 @@ import org.junit.Test
 
 @HiltAndroidTest
 @UninstallModules(AppModule::class)
-class ListCharacteresScreenTest{
+class CharacterDetailScreenKtTest{
 
-    @get:Rule (order = 0)
+    @get:Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
 
-    @get:Rule (order = 1)
+    @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @ExperimentalCoilApi
@@ -47,15 +48,13 @@ class ListCharacteresScreenTest{
 
 
     @Test
-    fun testTextTopBar(){
-        composeRule.onNodeWithTag(TestTags.TITLE_LIST_CHARACTER_BAR).assertIsDisplayed()
+    fun testClickDetail(){
+        //Screen List Characters
+        composeRule.onNodeWithTag(TestTags.CHARACTER_ITEM_SELECTED).performClick()
+
+        //Screen Detail Character
+        composeRule.onNodeWithTag(TestTags.TITLE_CHARACTER_DETAIL_BAR).assertIsDisplayed()
+
     }
 
-    @ExperimentalCoilApi
-    @ExperimentalFoundationApi
-    @Test
-    fun testItemClick() {
-        composeRule.onNodeWithTag(TestTags.CHARACTER_ITEM_SELECTED).assertIsDisplayed()
-        composeRule.onNodeWithTag(TestTags.CHARACTER_ITEM_SELECTED).performClick()
-    }
 }
