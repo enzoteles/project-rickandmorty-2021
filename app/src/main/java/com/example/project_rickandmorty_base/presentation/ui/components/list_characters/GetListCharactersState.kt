@@ -5,7 +5,7 @@ import com.example.project_rickandmorty_base.domain.model.character_detail.Chara
 import com.example.project_rickandmorty_base.domain.model.list_characters.ListCharactersMapper
 
 data class GetListCharactersState(
-    val isLoading: Boolean = false,
+    val isLoading: Boolean = true,
     val data: List<CharacterMapper>? = listOf(),
     val error: String = ""
 )

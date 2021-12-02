@@ -31,9 +31,11 @@ import coil.compose.rememberImagePainter
 import com.example.project_rickandmorty_base.R
 import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
+import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
 import com.example.project_rickandmorty_base.presentation.ui.components.list_characters.GetListCharactersState
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoilApi
@@ -83,22 +85,25 @@ fun ListCharacterLazyCollun(
 ) {
     val characterListItem: LazyPagingItems<CharacterMapper> = dataSource.collectAsLazyPagingItems()
     Box(modifier = Modifier.fillMaxSize()) {
+
         //loading
-        if (state.isLoading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-        }
-        //content
-        LazyVerticalGrid(
-            cells = GridCells.Fixed(2),
-            contentPadding = PaddingValues(8.dp),
-            modifier = Modifier.testTag(TestTags.CHARACTER_ITEM_SELECTED),
-        ) {
-            items(characterListItem.itemCount) { index ->
-                val character = characterListItem[index]
-                CharacterListItem(item = character) { id ->
-                    nameScreen(Screen.CharacterDetailScreen.route + "/$id")
+        CircularIndeterminateProgressBarComponent(isDisplayed = state.isLoading)
+
+        if(state.isLoading.not()){
+            //content
+            LazyVerticalGrid(
+                cells = GridCells.Fixed(2),
+                contentPadding = PaddingValues(8.dp),
+                modifier = Modifier.testTag(TestTags.CHARACTER_ITEM_SELECTED),
+            ) {
+                items(characterListItem.itemCount) { index ->
+                    val character = characterListItem[index]
+                    CharacterListItem(item = character) { id ->
+                        nameScreen(Screen.CharacterDetailScreen.route + "/$id")
+                    }
                 }
             }
+
         }
 
         //error

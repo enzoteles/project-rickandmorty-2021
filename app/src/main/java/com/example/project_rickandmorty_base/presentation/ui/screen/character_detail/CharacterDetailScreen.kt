@@ -26,6 +26,7 @@ import coil.compose.rememberImagePainter
 import com.example.project_rickandmorty_base.R
 import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
+import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
 import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.ListCharacterLazyCollun
 import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.TopBarListCharacter
@@ -81,118 +82,139 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
 
     ) {
         state.data?.let { character ->
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()){
-                item {
-                    Image(
-                        painter = rememberImagePainter(character.image),
-                        contentDescription = "Character Item",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(300.dp)
-                    )
 
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(start = 8.dp, end = 8.dp)
-                    ) {
-                        Text(
-                            text = character.name,
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black,
-                            textAlign = TextAlign.Center,
+            //loading
+            CircularIndeterminateProgressBarComponent(isDisplayed = state.isLoading)
+
+            if(state.isLoading.not()){
+                //content
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()){
+                    item {
+                        Image(
+                            painter = rememberImagePainter(character.image),
+                            contentDescription = "Character Item",
+                            contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(bottom = 8.dp)
+                                .height(300.dp)
                         )
-                        Divider()
 
-                        Spacer(modifier = Modifier.height(25.dp))
-                        Row {
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Column(
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .padding(start = 8.dp, end = 8.dp)
+                        ) {
                             Text(
-                                text = "Status: ",
-                                fontSize = 18.sp,
+                                text = character.name,
+                                fontSize = 32.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(bottom = 8.dp)
                             )
-                            Text(
-                                text = "${character.status}",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.Black,
-                            )
-                        }
+                            Divider()
 
-                        Spacer(modifier = Modifier.height(25.dp))
-                        Row {
-                            Text(
-                                text = "Species: ",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black,
-                            )
-                            Text(
-                                text = "${character.species}",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.Black,
-                            )
-                        }
+                            Spacer(modifier = Modifier.height(25.dp))
+                            Row {
+                                Text(
+                                    text = "Status: ",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black,
+                                )
+                                Text(
+                                    text = "${character.status}",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.Black,
+                                )
+                            }
 
-                        Spacer(modifier = Modifier.height(25.dp))
-                        Row {
-                            Text(
-                                text = "Gender: ",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black,
-                            )
-                            Text(
-                                text = "${character.species}",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.Black,
-                            )
-                        }
+                            Spacer(modifier = Modifier.height(25.dp))
+                            Row {
+                                Text(
+                                    text = "Species: ",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black,
+                                )
+                                Text(
+                                    text = "${character.species}",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.Black,
+                                )
+                            }
 
-                        Spacer(modifier = Modifier.height(25.dp))
-                        Row {
-                            Text(
-                                text = "Url: ",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black,
-                            )
-                            Text(
-                                text = "${character.url}",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.Black,
-                            )
-                        }
+                            Spacer(modifier = Modifier.height(25.dp))
+                            Row {
+                                Text(
+                                    text = "Gender: ",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black,
+                                )
+                                Text(
+                                    text = "${character.species}",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.Black,
+                                )
+                            }
 
-                        Spacer(modifier = Modifier.height(25.dp))
-                        Row {
-                            Text(
-                                text = "Created: ",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black,
-                            )
-                            Text(
-                                text = "${character.created}",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.Black,
-                            )
+                            Spacer(modifier = Modifier.height(25.dp))
+                            Row {
+                                Text(
+                                    text = "Url: ",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black,
+                                )
+                                Text(
+                                    text = "${character.url}",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.Black,
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.height(25.dp))
+                            Row {
+                                Text(
+                                    text = "Created: ",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black,
+                                )
+                                Text(
+                                    text = "${character.created}",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.Black,
+                                )
+                            }
                         }
                     }
                 }
             }
+
+            //error
+            if (state.error.isNotBlank()) {
+                Text(
+                    text = state.error,
+                    color = MaterialTheme.colors.error,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .align(Alignment.Center)
+                )
+            }
+
         }
     }
 

@@ -17,6 +17,7 @@ import com.example.project_rickandmorty_base.domain.usecase.GetListCharactersUse
 import com.example.project_rickandmorty_base.presentation.ui.components.list_characters.GetListCharactersState
 import com.example.project_rickandmorty_base.presentation.ui.paging.CharacterSource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -41,7 +42,7 @@ class GetListCharactersViewModel @Inject constructor(
 
     private fun getListCharacters() {
         getListCharactersUseCase.invoke().onEach { result ->
-
+            delay(2000)
             when (result) {
                 is ApiResponse.Loading -> {
                     _state.value = GetListCharactersState(
@@ -50,11 +51,13 @@ class GetListCharactersViewModel @Inject constructor(
                 }
                 is ApiResponse.Success -> {
                     _state.value = GetListCharactersState(
+                        isLoading = false,
                         data = result.data?.results?.map { it.toCharacter() }
                     )
                 }
                 is ApiResponse.Failure -> {
                         _state.value = GetListCharactersState(
+                            isLoading = false,
                             error = result.msg
                         )
                 }
