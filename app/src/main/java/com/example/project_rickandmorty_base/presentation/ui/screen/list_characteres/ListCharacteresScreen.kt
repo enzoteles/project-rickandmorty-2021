@@ -63,7 +63,7 @@ fun TopBarListCharacter() {
     TopAppBar(
         title = {
             Text(text = stringResource(R.string.list_screen),
-            modifier = Modifier.testTag(TestTags.TITLE_LIST_BAR))
+            modifier = Modifier.testTag(TestTags.TITLE_LIST_CHARACTER_BAR))
         },
 
         backgroundColor = MaterialTheme.colors.primary,
@@ -89,7 +89,7 @@ fun ListCharacterLazyCollun(
         }
         //content
         LazyVerticalGrid(
-            cells = GridCells.Fixed(1),
+            cells = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp),
             modifier = Modifier.testTag(TestTags.CHARACTER_ITEM_SELECTED)
         ) {

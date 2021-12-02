@@ -48,7 +48,7 @@ class ListCharacteresScreenTest{
 
     @Test
     fun textTopBar(){
-        composeRule.onNodeWithTag(TestTags.TITLE_LIST_BAR).assertIsDisplayed()
+        composeRule.onNodeWithTag(TestTags.TITLE_LIST_CHARACTER_BAR).assertIsDisplayed()
     }
 
     @ExperimentalCoilApi

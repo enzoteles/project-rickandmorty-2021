@@ -1,5 +1,6 @@
 package com.example.project_rickandmorty_base.data.remote.character_detail
 
+import com.example.project_rickandmorty_base.commons.utils.DateTimeHelper
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 
 data class Character(
@@ -18,7 +19,7 @@ data class Character(
 )
 
 fun Character.toCharacter() = CharacterMapper(
-    created = created,
+    created = DateTimeHelper.convertToDate(created, "yyyy-MM-dd", "dd/MM/yyyy"),
     episode = episode,
     gender = gender,
     id = id,
