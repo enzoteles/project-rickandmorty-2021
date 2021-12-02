@@ -95,7 +95,7 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
                     Column(
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .padding(start = 16.dp, end = 16.dp)
+                            .padding(start = 8.dp, end = 8.dp)
                     ) {
                         Text(
                             text = character.name,
