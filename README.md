@@ -23,8 +23,11 @@ A classe ViewModel foi projetada para armazenar e gerenciar dados relacionados �
 ## [JetPack Compose](https://developer.android.com/jetpack/compose?hl=pt-br)
 O Jetpack Compose é um kit de ferramentas moderno do Android para criar IUs nativas. Ele simplifica e acelera o desenvolvimento da IU no Android. Dê vida ao seu app rapidamente com menos código, ferramentas eficientes e APIs Kotlin intuitivas.
 
-## [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=pt-br)
-LiveData é uma classe armazenadora de dados observável. Diferente de um observável comum, o LiveData conta com reconhecimento de ciclo de vida, ou seja, ele respeita o ciclo de vida de outros componentes do app, como atividades, fragmentos ou serviços. Esse reconhecimento garante que o LiveData atualize apenas os observadores de componente do app que estão em um estado ativo no ciclo de vida.
+## [State and JetPack Compose](https://developer.android.google.cn/jetpack/compose/state?hl=en)
+O estado em um app é qualquer valor que pode mudar ao longo do tempo. Essa é uma definição muito ampla e abrange tudo, de um banco de dados da Room até a variável em uma classe.
+
+## [SavedStateHandle](https://developer.android.com/topic/libraries/architecture/viewmodel-savedstate)
+Conforme mencionado em Como salvar estados de IU, os objetos ViewModel podem processar mudanças de configuração, então você não precisa se preocupar com o estado em rotações ou outros casos. No entanto, se você precisar lidar com a interrupção do processo iniciada pelo sistema, é recomendável usar onSaveInstanceState() como backup.
 
 ## [Corrotinas do Kotlin no Android](https://developer.android.com/kotlin/coroutines?gclid=CjwKCAiAvriMBhAuEiwA8Cs5lQzJ-3Eiv2px-E23Iq12uadkReNe2n_N2OGrnHSjp8wU1sJT4oDzpRoCb_sQAvD_BwE&gclsrc=aw.ds)
 Uma corrotina é um padrão de projeto de simultaneidade que você pode usar no Android para simplificar o código que é executado de forma assíncrona. Corrotinas foram adicionadas ao Kotlin na versão 1.3 e são baseadas em conceitos estabelecidos de outras linguagens (link em inglês).
