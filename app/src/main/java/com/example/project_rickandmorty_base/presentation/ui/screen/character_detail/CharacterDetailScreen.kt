@@ -54,10 +54,12 @@ fun TopBarLCharacterDetail(
     TopAppBar(
         title = {
             Text(text = stringResource(R.string.detail_screen),
-                modifier = Modifier.testTag(TestTags.TITLE_LIST_CHARACTER_BAR))
+                modifier = Modifier.testTag(TestTags.TITLE_CHARACTER_DETAIL_BAR))
         },
         navigationIcon = {
-            IconButton(onClick = { onClick() }) {
+            IconButton(
+                onClick = { onClick() },
+            modifier = Modifier.testTag(TestTags.BUTTON_CHARACTER_TOP_BAR_BACK)) {
                 Icon(Icons.Filled.ArrowBack,"")
             }
         },
