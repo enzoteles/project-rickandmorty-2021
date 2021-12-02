@@ -48,5 +48,11 @@ A biblioteca Paging ajuda a carregar e exibir pequenos blocos de dados por vez. 
 ## [Integration Test](https://developer.android.com/jetpack/compose/testing)
 O teste de IUs ou de telas é usado para verificar o comportamento correto do código do Compose, melhorando a qualidade do app ao detectar erros no início do processo de desenvolvimento.
 
+Telas do Projeto abaixo:
+
+<img width="380" alt="Screen Shot 2021-12-02 at 17 33 41" src="https://user-images.githubusercontent.com/5742609/144498735-0908fe56-d030-417f-9f05-eb227f8e8f5e.png">
+
+<img width="376" alt="Screen Shot 2021-12-02 at 17 33 53" src="https://user-images.githubusercontent.com/5742609/144498742-b10252ae-ca2d-4bb6-966e-0dbb474be91e.png">
+
 
 
