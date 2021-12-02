@@ -50,9 +50,8 @@ O teste de IUs ou de telas √© usado para verificar o comportamento correto do c√
 
 Telas do Projeto abaixo:
 
-<img width="380" alt="Screen Shot 2021-12-02 at 17 33 41" src="https://user-images.githubusercontent.com/5742609/144498735-0908fe56-d030-417f-9f05-eb227f8e8f5e.png">
+<img width="398" alt="Screen Shot 2021-12-02 at 17 40 05" src="https://user-images.githubusercontent.com/5742609/144499615-7ac49d96-92ab-469d-ab0a-f22e9e220c3f.png">
 
-<img width="376" alt="Screen Shot 2021-12-02 at 17 33 53" src="https://user-images.githubusercontent.com/5742609/144498742-b10252ae-ca2d-4bb6-966e-0dbb474be91e.png">
-
+<img width="399" alt="Screen Shot 2021-12-02 at 17 39 50" src="https://user-images.githubusercontent.com/5742609/144499622-1e614993-f81f-4404-9eca-a3f3ef7819a6.png">
 
 
