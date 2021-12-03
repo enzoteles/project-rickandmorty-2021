@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CircularIndeterminateProgressBarComponent(
-    isDisplayed: Boolean
+    isDisplayed: Boolean = true
 ){
     if(isDisplayed){
         Row(

@@ -13,6 +13,7 @@ import com.example.project_rickandmorty_base.domain.usecase.GetCharacterDetailUs
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
 import com.example.project_rickandmorty_base.presentation.ui.components.list_characters.GetListCharactersState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -34,7 +35,7 @@ class GetCharacterDetailViewModel @Inject constructor(
 
     private fun getDetailCharacter(characterId: String) {
         getCharacterDetailUseCase.invoke(characterId.toInt()).onEach { result ->
-
+            delay(1000)
             when (result) {
                 is ApiResponse.Loading -> {
                     _state.value = GenericsGetState(
@@ -43,11 +44,13 @@ class GetCharacterDetailViewModel @Inject constructor(
                 }
                 is ApiResponse.Success -> {
                     _state.value = GenericsGetState(
+                        isLoading = false,
                         data = result.data?.toCharacter()
                     )
                 }
                 is ApiResponse.Failure -> {
                         _state.value = GenericsGetState(
+                            isLoading = false,
                             error = result.msg
                         )
                 }

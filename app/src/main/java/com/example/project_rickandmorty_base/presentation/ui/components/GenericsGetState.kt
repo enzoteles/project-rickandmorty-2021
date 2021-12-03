@@ -5,7 +5,7 @@ import com.example.project_rickandmorty_base.domain.model.character_detail.Chara
 import com.example.project_rickandmorty_base.domain.model.list_characters.ListCharactersMapper
 
 data class GenericsGetState<T>(
-    val isLoading: Boolean = false,
+    val isLoading: Boolean = true,
     val data: T ?= null,
     val error: String = ""
 )

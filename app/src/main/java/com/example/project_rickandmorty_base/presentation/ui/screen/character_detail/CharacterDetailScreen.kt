@@ -9,6 +9,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -81,11 +84,11 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
             .background(Color.White)
 
     ) {
+        //loading
+        CircularIndeterminateProgressBarComponent(isDisplayed = state.isLoading)
+
+        //content
         state.data?.let { character ->
-
-            //loading
-            CircularIndeterminateProgressBarComponent(isDisplayed = state.isLoading)
-
             if(state.isLoading.not()){
                 //content
                 LazyColumn(
@@ -201,20 +204,19 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
                     }
                 }
             }
+        }
 
-            //error
-            if (state.error.isNotBlank()) {
-                Text(
-                    text = state.error,
-                    color = MaterialTheme.colors.error,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                        .align(Alignment.Center)
-                )
-            }
-
+        //error
+        if (state.error.isNotBlank()) {
+            Text(
+                text = state.error,
+                color = MaterialTheme.colors.error,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp)
+                    .align(Alignment.Center)
+            )
         }
     }
 
