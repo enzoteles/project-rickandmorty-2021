@@ -74,6 +74,7 @@ fun TopBarLCharacterDetail(
     )
 }
 
+@ExperimentalCoilApi
 @Composable
 fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
 

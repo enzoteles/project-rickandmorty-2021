@@ -32,7 +32,7 @@ class GetListCharactersViewModel @Inject constructor(
     private val api: RickAndMortkDataSource,
 ): ViewModel() {
 
-    private var _state = mutableStateOf(GenericsGetState<List<CharacterMapper>>())
+    private var _state = mutableStateOf(GenericsGetState<List<CharacterMapper>>(isLoading = true))
     val state: State<GenericsGetState<List<CharacterMapper>>> = _state
 
     val character: Flow<PagingData<CharacterMapper>> = Pager(PagingConfig(pageSize = 10)) {
