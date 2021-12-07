@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.presentation.ui.screen.character_detail.CharacterDetailScreen
@@ -26,26 +27,31 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun MainNavGraph() {
     val navController = rememberNavController()
+    val viewModelFilter: GetFilterCharactersViewModel = hiltViewModel()
+    val viewModel: GetListCharactersViewModel = hiltViewModel()
+    val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+
+    val scope = rememberCoroutineScope()
+    val stateModel = viewModel.state.value
+    val dataSource = viewModel.character
 
     NavHost(navController = navController, startDestination = Screen.ListCharactersScreen.route) {
         composable(route = Screen.ListCharactersScreen.route) {
 
-            val viewModel: GetListCharactersViewModel = hiltViewModel()
-            val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-            val scope = rememberCoroutineScope()
+
             ModalBottomSheetLayout(
                 sheetContent = {
-                    BottomSheetCharacterScreen {
+                    BottomSheetCharacterScreen (viewModelFilter){
                         navController.popBackStack()
                         navController.navigate(Screen.FilterCharacterBottomSheetScreen.route)
                     }
+
                 },
                 sheetState = modalBottomSheetState,
                 sheetShape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
             ) {
 
-                val stateModel = viewModel.state.value
-                val dataSource = viewModel.character
+
                 Scaffold(
                     topBar = { TopBarListCharacter{
                         scope.launch {
@@ -80,10 +86,10 @@ internal fun MainNavGraph() {
         composable(
             route = Screen.FilterCharacterBottomSheetScreen.route
         ){
-            ListFilterCharacterScreen(nameScreen = { navController.navigate(it)}) {
-                navController.popBackStack()
-                navController.navigate(Screen.FilterCharacterBottomSheetScreen.route)
-            }
+                ListFilterCharacterScreen(viewModel = viewModelFilter, nameScreen = { navController.navigate(it)}) {
+                   navController.popBackStack()
+                    navController.navigate(Screen.FilterCharacterBottomSheetScreen.route)
+                }
         }
     }
 }

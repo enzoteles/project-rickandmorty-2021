@@ -51,10 +51,7 @@ class GetFilterCharactersViewModel @Inject constructor(
         CharacterSource(api)
     }.flow.cachedIn(viewModelScope)
 
-    init {
-        getListCharactersFilter()
-    }
-    private fun getListCharactersFilter() {
+    fun getListCharactersFilter() {
         getCharacterFilterUseCase.invoke(
             name = name.value,
             status = status.value,

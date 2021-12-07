@@ -33,20 +33,21 @@ import kotlinx.coroutines.launch
 @ExperimentalFoundationApi
 @Composable
 fun ListFilterCharacterScreen(
-    viewModel: GetFilterCharactersViewModel = hiltViewModel(),
+    viewModel: GetFilterCharactersViewModel,
     nameScreen: (String) -> Unit,
     topBarClick: () -> Unit
 ) {
     val stateModel = viewModel.state.value
     val dataSource = viewModel.character
     val characterListItem: LazyPagingItems<CharacterMapper> = dataSource.collectAsLazyPagingItems()
-    val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val modalBottomSheetState =
+        rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val scope = rememberCoroutineScope()
 
     ModalBottomSheetLayout(
         sheetContent = {
-            BottomSheetCharacterScreen {
-                topBarClick()
+            BottomSheetCharacterScreen(viewModel = viewModel) {
+                topBarClick.invoke()
             }
         },
         sheetState = modalBottomSheetState,
@@ -54,7 +55,7 @@ fun ListFilterCharacterScreen(
     ) {
         Scaffold(
             topBar = {
-                TopBarListCharacter{
+                TopBarListCharacter {
                     scope.launch {
                         if (modalBottomSheetState.isVisible.not()) {
                             modalBottomSheetState.animateTo(ModalBottomSheetValue.Expanded)
@@ -70,7 +71,7 @@ fun ListFilterCharacterScreen(
                     CircularIndeterminateProgressBarComponent(isDisplayed = stateModel.isLoading)
 
                     //content
-                    if (stateModel.isLoading.not()) {
+                    if (stateModel.isLoading.not() && stateModel.error.isBlank()) {
                         LazyVerticalGrid(
                             cells = GridCells.Fixed(2),
                             contentPadding = PaddingValues(8.dp),
@@ -89,7 +90,7 @@ fun ListFilterCharacterScreen(
                     //error
                     if (stateModel.error.isNotBlank()) {
                         Text(
-                            text = stateModel.error,
+                            text = "Not found character",
                             color = MaterialTheme.colors.error,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
@@ -102,9 +103,9 @@ fun ListFilterCharacterScreen(
             }
         )
     }
-
-
-
 }
+
+
+
 
 

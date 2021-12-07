@@ -22,7 +22,7 @@ import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_ch
 @ExperimentalMaterialApi
 @Composable
 fun BottomSheetCharacterScreen(
-    viewModel: GetFilterCharactersViewModel = hiltViewModel(),
+    viewModel: GetFilterCharactersViewModel,
     onclick: () -> Unit,
 ) {
     val name  by  viewModel.name.observeAsState("")
@@ -83,6 +83,7 @@ fun BottomSheetCharacterScreen(
 
             Button(
                 onClick = {
+                    viewModel.getListCharactersFilter()
                     onclick()
                           },
                 modifier = Modifier
