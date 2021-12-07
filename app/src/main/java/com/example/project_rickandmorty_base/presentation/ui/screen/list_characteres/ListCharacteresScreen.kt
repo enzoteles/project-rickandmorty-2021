@@ -79,7 +79,7 @@ fun ListCharacterLazyCollun(
         //loading
         CircularIndeterminateProgressBarComponent(isDisplayed = state.isLoading)
 
-        if(state.isLoading.not()){
+        if(state.isLoading.not() && state.error.isBlank()){
             //content
             LazyVerticalGrid(
                 cells = GridCells.Fixed(2),
