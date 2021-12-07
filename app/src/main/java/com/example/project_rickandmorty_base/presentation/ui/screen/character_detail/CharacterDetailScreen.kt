@@ -1,6 +1,6 @@
 package com.example.project_rickandmorty_base.presentation.ui.screen.character_detail
 
-import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,9 +9,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +17,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,14 +24,10 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.project_rickandmorty_base.R
 import com.example.project_rickandmorty_base.commons.utils.TestTags
-import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
-import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
-import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.ListCharacterLazyCollun
-import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.TopBarListCharacter
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.character_detail.GetCharacterDetailViewModel
-import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
 
+@ExperimentalFoundationApi
 @ExperimentalCoilApi
 @Composable
 fun CharacterDetailScreen(
@@ -51,6 +43,7 @@ fun CharacterDetailScreen(
 
 }
 
+@ExperimentalFoundationApi
 @Composable
 fun TopBarLCharacterDetail(
     onClick: () -> Unit
@@ -62,7 +55,7 @@ fun TopBarLCharacterDetail(
         },
         navigationIcon = {
             IconButton(
-                onClick = { onClick() },
+                onClick = { onClick() } ,
             modifier = Modifier.testTag(TestTags.BUTTON_CHARACTER_TOP_BAR_BACK)) {
                 Icon(Icons.Filled.ArrowBack,"")
             }
@@ -73,6 +66,8 @@ fun TopBarLCharacterDetail(
         elevation = 12.dp
     )
 }
+
+
 
 @ExperimentalCoilApi
 @Composable
@@ -97,7 +92,7 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
                     item {
                         Image(
                             painter = rememberImagePainter(character.image),
-                            contentDescription = "Character Item",
+                            contentDescription = stringResource(id = R.string.character_item),
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .fillMaxWidth()

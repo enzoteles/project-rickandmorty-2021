@@ -25,11 +25,11 @@ interface RickAndMortkDataSource {
 
     @GET("character/")
     suspend fun getCharacterFilter(
-        @Query("name") name: String?= null,
-        @Query("status") status: String?= null,
-        @Query("species") species: String?=null,
-        @Query("type") type: String?=null,
-        @Query("gender") gender: String?=null,
+        @Query("name") name: String? = "",
+        @Query("status") status: String?= "",
+        @Query("species") species: String?="",
+        @Query("type") type: String?="",
+        @Query("gender") gender: String?="",
     ): Response<ListCharacters>
 
 }

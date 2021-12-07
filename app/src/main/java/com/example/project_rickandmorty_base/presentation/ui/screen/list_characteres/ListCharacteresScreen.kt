@@ -1,13 +1,11 @@
 package com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -17,12 +15,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -33,36 +31,19 @@ import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
-import com.example.project_rickandmorty_base.presentation.ui.components.list_characters.GetListCharactersState
+import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun ListCharacterScreen(
-    viewModel: GetListCharactersViewModel,
-    nameScreen: (String) -> Unit
+fun TopBarListCharacter(
+    onClickFilter: () -> Unit
 ) {
-    val state = viewModel.state.value
-    val dataSource = viewModel.character
-    Scaffold(
-        topBar = { TopBarListCharacter() },
-        content = {
-            ListCharacterLazyCollun(
-                dataSource = dataSource,
-                state = state,
-                nameScreen = nameScreen
-            )
-        },
-    )
-
-}
-
-@Composable
-fun TopBarListCharacter() {
+    val menuFilterIcon = MenuAction.Filter.icon
+    val menuFilterLabel = MenuAction.Filter.label
     TopAppBar(
         title = {
             Text(text = stringResource(R.string.list_screen),
@@ -71,7 +52,15 @@ fun TopBarListCharacter() {
 
         backgroundColor = MaterialTheme.colors.primary,
         contentColor = Color.White,
-        elevation = 12.dp
+        elevation = 12.dp,
+        actions = {
+            IconButton(onClick = { onClickFilter() }) {
+                Icon(
+                    painter = painterResource(id = menuFilterIcon)
+                    , contentDescription = stringResource(id = menuFilterLabel)
+                )
+            }
+        }
     )
 }
 
@@ -150,7 +139,7 @@ fun CharacterListItem(
             //Coil Image
             Image(
                 painter = rememberImagePainter(item?.image),
-                contentDescription = "Character Item",
+                contentDescription = stringResource(id = R.string.character_item),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()

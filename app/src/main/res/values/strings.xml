@@ -2,4 +2,13 @@
     <string name="app_name">project-rickandmorty-base</string>
     <string name="list_screen">List of Characters</string>
     <string name="detail_screen">Character Detail</string>
+    <string name="character_item">Character Item</string>
+
+
+
+
+    <string name="icon_filter_unselected">Filter_Unselected</string>
+    <string name="icon_filter_selected">Filter_Selected</string>
+
+
 </resources>
