@@ -75,7 +75,7 @@ fun ListFilterCharacterScreen(
                         LazyVerticalGrid(
                             cells = GridCells.Fixed(2),
                             contentPadding = PaddingValues(8.dp),
-                            modifier = Modifier.testTag(TestTags.CHARACTER_ITEM_SELECTED),
+                            modifier = Modifier.testTag(TestTags.CHARACTER_ITEM_SELECTED_FILTER),
                         ) {
                             items(characterListItem.itemCount) { index ->
                                 val character = characterListItem[index]

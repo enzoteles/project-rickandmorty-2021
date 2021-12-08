@@ -5,16 +5,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
+import com.example.project_rickandmorty_base.R
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
+import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 
 @ExperimentalCoilApi
@@ -90,15 +95,15 @@ fun BottomSheetCharacterScreen(
                     .align(Alignment.BottomEnd)
                     .fillMaxWidth()
             ) {
-                // Inner content including an icon and a text label
+                val menuFilterIcon = MenuAction.Filter.icon
+                val menuFilterLabel = MenuAction.Filter.label
                 Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Favorite",
-                    modifier = Modifier.size(ButtonDefaults.IconSize)
+                    painter = painterResource(id = menuFilterIcon)
+                    , contentDescription = stringResource(id = menuFilterLabel)
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                 Text(
-                    text = "Like",
+                    text = stringResource(id = R.string.btn_filter_character),
                     fontSize = 18.sp
                     )
             }

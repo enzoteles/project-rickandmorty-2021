@@ -5,10 +5,10 @@
     <string name="character_item">Character Item</string>
 
 
-
-
     <string name="icon_filter_unselected">Filter_Unselected</string>
     <string name="icon_filter_selected">Filter_Selected</string>
+    <string name="btn_filter_character">Filtrar Character</string>
+
 
 
 </resources>

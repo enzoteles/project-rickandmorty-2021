@@ -8,4 +8,7 @@ object TestTags {
     // Detail Character
     const val TITLE_CHARACTER_DETAIL_BAR = "Character Detail"
     const val BUTTON_CHARACTER_TOP_BAR_BACK = "BUTTON TOP BAR BACK"
+
+    //Filter Character
+    const val CHARACTER_ITEM_SELECTED_FILTER = "CHARACTER_ITEM_SELECTED_FILTER"
 }
