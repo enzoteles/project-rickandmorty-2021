@@ -32,10 +32,10 @@ class GetFilterCharactersViewModel @Inject constructor(
     private var _state = mutableStateOf(GenericsGetState<List<CharacterMapper>>())
     val state: State<GenericsGetState<List<CharacterMapper>>> = _state
 
-    val _name: MutableLiveData<String> = savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_NAME, "")
+    private val _name: MutableLiveData<String> = savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_NAME, "")
     var name: LiveData<String> = _name
 
-    val _status: MutableLiveData<String> = savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_STATUS, "")
+    private val _status: MutableLiveData<String> = savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_STATUS, "")
     var status: LiveData<String> = _status
 
     private val _species: MutableLiveData<String> = savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_SPECIES, "")
@@ -62,18 +62,18 @@ class GetFilterCharactersViewModel @Inject constructor(
             delay(1000)
             when (result) {
                 is ApiResponse.Loading -> {
-                    _state.value = GenericsGetState(
+                    _state.value = _state.value.copy(
                         isLoading = true
                     )
                 }
                 is ApiResponse.Success -> {
-                    _state.value = GenericsGetState(
+                    _state.value = _state.value.copy(
                         isLoading = false,
                         data = result.data?.results?.map { it.toCharacter() }
                     )
                 }
                 is ApiResponse.Failure -> {
-                        _state.value = GenericsGetState(
+                        _state.value = _state.value.copy(
                             isLoading = false,
                             error = result.msg
                         )
