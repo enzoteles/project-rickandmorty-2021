@@ -1,4 +1,4 @@
-package com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres
+package com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -33,7 +33,6 @@ import com.example.project_rickandmorty_base.presentation.ui.components.Circular
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
 import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
-import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoilApi
@@ -84,7 +83,6 @@ fun ListCharacterLazyCollun(
             LazyVerticalGrid(
                 cells = GridCells.Fixed(2),
                 contentPadding = PaddingValues(8.dp),
-                modifier = Modifier.testTag(TestTags.CHARACTER_ITEM_SELECTED),
             ) {
                 items(characterListItem.itemCount) { index ->
                     val character = characterListItem[index]

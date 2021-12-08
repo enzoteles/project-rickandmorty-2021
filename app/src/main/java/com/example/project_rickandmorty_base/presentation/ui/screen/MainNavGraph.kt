@@ -8,17 +8,15 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.presentation.ui.screen.character_detail.CharacterDetailScreen
 import com.example.project_rickandmorty_base.presentation.ui.screen.filter_character.BottomSheetCharacterScreen
 import com.example.project_rickandmorty_base.presentation.ui.screen.filter_character.ListFilterCharacterScreen
-import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.ListCharacterLazyCollun
-import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.TopBarListCharacter
+import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.ListCharacterLazyCollun
+import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.TopBarListCharacter
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi

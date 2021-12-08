@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.R
+import com.example.project_rickandmorty_base.commons.utils.Constants
+import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
@@ -50,14 +53,18 @@ fun BottomSheetCharacterScreen(
                     value = name,
                     onValueChange = { viewModel.onNameChange(it) },
                     label = { Text("Nome") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(TestTags.BS_NAME_TEXT_FIELD)
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
                     value = status,
                     onValueChange = { viewModel.onStatusChange(it) },
                     label = { Text("Status") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(TestTags.BS_STATUS_TEXT_FIELD)
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -65,7 +72,9 @@ fun BottomSheetCharacterScreen(
                     value = species,
                     onValueChange = { viewModel.onSpeciesChange(it) },
                     label = { Text("Espécie") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(TestTags.BS_SPECIES_TEXT_FIELD)
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -73,7 +82,9 @@ fun BottomSheetCharacterScreen(
                     value = type,
                     onValueChange = { viewModel.onTypeChange(it) },
                     label = { Text("Tipo") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(TestTags.BS_TYPE_TEXT_FIELD)
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -81,7 +92,9 @@ fun BottomSheetCharacterScreen(
                     value = gender,
                     onValueChange = { viewModel.onGenderChange(it) },
                     label = { Text("Sexo") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(TestTags.BS_GENDER_TEXT_FIELD)
                 )
 
             }
@@ -94,14 +107,9 @@ fun BottomSheetCharacterScreen(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .fillMaxWidth()
+                    .testTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER)
             ) {
-                val menuFilterIcon = MenuAction.Filter.icon
-                val menuFilterLabel = MenuAction.Filter.label
-                Icon(
-                    painter = painterResource(id = menuFilterIcon)
-                    , contentDescription = stringResource(id = menuFilterLabel)
-                )
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
                 Text(
                     text = stringResource(id = R.string.btn_filter_character),
                     fontSize = 18.sp

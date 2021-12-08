@@ -1,6 +1,5 @@
 package com.example.project_rickandmorty_base.presentation.ui.screen.filter_character
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
@@ -14,17 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
-import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
-import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.CharacterListItem
-import com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres.TopBarListCharacter
+import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.CharacterListItem
+import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.TopBarListCharacter
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 import kotlinx.coroutines.launch
 

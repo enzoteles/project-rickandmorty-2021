@@ -1,14 +1,16 @@
-package com.example.project_rickandmorty_base.presentation.ui.screen.list_characteres
+package com.example.project_rickandmorty_base.presentation.ui.screen.ui_tests
 
+import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.performClick
+import androidx.test.core.app.ApplicationProvider
 import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.MainActivity
+import com.example.project_rickandmorty_base.R
 import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.presentation.di.AppModule
 import com.example.project_rickandmorty_base.presentation.ui.screen.MainNavGraph
@@ -20,14 +22,15 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalMaterialApi
 @HiltAndroidTest
 @UninstallModules(AppModule::class)
-class ListCharacteresScreenTest{
+class CharacterEndToEndTest {
 
-    @get:Rule (order = 0)
+    @get:Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
 
-    @get:Rule (order = 1)
+    @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @ExperimentalCoilApi
@@ -45,17 +48,42 @@ class ListCharacteresScreenTest{
         }
     }
 
-
     @Test
-    fun testTextTopBar(){
+    fun lookforACharacterInTheAPI(){
+
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val buttonFilter = context.getString(R.string.icon_filter_unselected)
+
+        composeRule.onNodeWithContentDescription(buttonFilter).performClick()
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_NAME_TEXT_FIELD)
+            .performTextInput("rick sanchez")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_STATUS_TEXT_FIELD)
+            .performTextInput("alive")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_SPECIES_TEXT_FIELD)
+            .performTextInput("human")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_TYPE_TEXT_FIELD)
+            .performTextInput("parasite")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_GENDER_TEXT_FIELD)
+            .performTextInput("male")
+
+
+        composeRule
+            .onNodeWithTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER)
+            .performClick()
+
+
         composeRule.onNodeWithTag(TestTags.TITLE_LIST_CHARACTER_BAR).assertIsDisplayed()
-    }
 
-    @ExperimentalCoilApi
-    @ExperimentalFoundationApi
-    @Test
-    fun testItemClick() {
-        composeRule.onNodeWithTag(TestTags.CHARACTER_ITEM_SELECTED).assertIsDisplayed()
-        composeRule.onNodeWithTag(TestTags.CHARACTER_ITEM_SELECTED).performClick()
+
     }
 }
