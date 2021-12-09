@@ -13,7 +13,7 @@ import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSou
 import com.example.project_rickandmorty_base.data.remote.character_detail.toCharacter
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.usecase.GetCharacterFilterUseCase
-import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
+import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import com.example.project_rickandmorty_base.presentation.ui.paging.CharacterSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -29,8 +29,8 @@ class GetFilterCharactersViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    private var _state = mutableStateOf(GenericsGetState<List<CharacterMapper>>())
-    val state: State<GenericsGetState<List<CharacterMapper>>> = _state
+    private var _state = mutableStateOf(GenericsUiState<List<CharacterMapper>>())
+    val state: State<GenericsUiState<List<CharacterMapper>>> = _state
 
     private val _name: MutableLiveData<String> = savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_NAME, "")
     var name: LiveData<String> = _name

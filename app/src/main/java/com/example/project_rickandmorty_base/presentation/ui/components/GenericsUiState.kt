@@ -4,7 +4,7 @@ import com.example.project_rickandmorty_base.data.remote.list_characters.ListCha
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.model.list_characters.ListCharactersMapper
 
-data class GenericsGetState<T>(
+data class GenericsUiState<T>(
     val isLoading: Boolean = true,
     val data: T ?= null,
     val error: String = ""

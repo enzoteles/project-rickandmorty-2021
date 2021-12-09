@@ -42,6 +42,11 @@ O Hilt é uma biblioteca de injeção de dependência para Android que reduz a i
 ## [Paging](https://developer.android.com/topic/libraries/architecture/paging?gclid=CjwKCAiAv_KMBhAzEiwAs-rX1ItQu1qirTI6C6Wnle8xWY8RSDqzjwag1AxaRg-W3mFMbpqr5FxdHxoCQacQAvD_BwE&gclsrc=aw.ds)
 A biblioteca Paging ajuda a carregar e exibir pequenos blocos de dados por vez. O carregamento de dados parciais sob demanda reduz o uso da largura de banda da rede e dos recursos do sistema.
 
+## [Test](https://developer.android.com/training/testing)
+Testar seu app é uma parte fundamental do processo de desenvolvimento dele. Executando testes no app de forma consistente, você pode verificar a precisão, o comportamento funcional e a usabilidade dele antes de lançá-lo publicamente.
+
+<img width="449" alt="Screen Shot 2021-12-08 at 11 12 06" src="https://user-images.githubusercontent.com/5742609/145397622-3dd631cf-2cf6-44cb-83c6-0acc78fb00a7.png">
+
 ## [Unit Test](https://developer.android.com/training/testing/unit-testing/local-unit-tests)
 É possível avaliar a lógica do app por meio de testes de unidade locais quando você precisa executar testes com mais rapidez e não requer a fidelidade e a confiança associadas à execução de testes em um dispositivo real.
 

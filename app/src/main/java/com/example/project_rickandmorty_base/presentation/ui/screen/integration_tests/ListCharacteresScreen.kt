@@ -30,7 +30,7 @@ import com.example.project_rickandmorty_base.R
 import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
-import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
+import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
 import kotlinx.coroutines.flow.Flow
@@ -69,7 +69,7 @@ fun TopBarListCharacter(
 @Composable
 fun ListCharacterLazyCollun(
     dataSource: Flow<PagingData<CharacterMapper>>,
-    state: GenericsGetState<List<CharacterMapper>>,
+    state: GenericsUiState<List<CharacterMapper>>,
     nameScreen: (String) -> Unit
 ) {
     val characterListItem: LazyPagingItems<CharacterMapper> = dataSource.collectAsLazyPagingItems()

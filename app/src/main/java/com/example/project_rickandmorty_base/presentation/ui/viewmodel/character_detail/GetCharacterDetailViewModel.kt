@@ -10,8 +10,7 @@ import com.example.project_rickandmorty_base.commons.utils.Constants
 import com.example.project_rickandmorty_base.data.remote.character_detail.toCharacter
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.usecase.GetCharacterDetailUseCase
-import com.example.project_rickandmorty_base.presentation.ui.components.GenericsGetState
-import com.example.project_rickandmorty_base.presentation.ui.components.list_characters.GetListCharactersState
+import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -24,8 +23,8 @@ class GetCharacterDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    private var _state = mutableStateOf(GenericsGetState<CharacterMapper>())
-    val state: State<GenericsGetState<CharacterMapper>> = _state
+    private var _state = mutableStateOf(GenericsUiState<CharacterMapper>())
+    val state: State<GenericsUiState<CharacterMapper>> = _state
 
     init {
         savedStateHandle.get<String>(Constants.PARAM_CHARACTER_ID)?.let { characterId ->
@@ -38,18 +37,18 @@ class GetCharacterDetailViewModel @Inject constructor(
             delay(1000)
             when (result) {
                 is ApiResponse.Loading -> {
-                    _state.value = GenericsGetState(
+                    _state.value = GenericsUiState(
                         isLoading = true
                     )
                 }
                 is ApiResponse.Success -> {
-                    _state.value = GenericsGetState(
+                    _state.value = GenericsUiState(
                         isLoading = false,
                         data = result.data?.toCharacter()
                     )
                 }
                 is ApiResponse.Failure -> {
-                        _state.value = GenericsGetState(
+                        _state.value = GenericsUiState(
                             isLoading = false,
                             error = result.msg
                         )
