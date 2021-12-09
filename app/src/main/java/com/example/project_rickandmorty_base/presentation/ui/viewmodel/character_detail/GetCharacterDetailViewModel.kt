@@ -10,6 +10,7 @@ import com.example.project_rickandmorty_base.commons.utils.Constants
 import com.example.project_rickandmorty_base.data.remote.character_detail.toCharacter
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.usecase.GetCharacterDetailUseCase
+import com.example.project_rickandmorty_base.domain.usecase.GetCharacterDetailUseCaseImpl
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GetCharacterDetailViewModel @Inject constructor(
-    private val getCharacterDetailUseCase: GetCharacterDetailUseCase,
+    private val getCharacterDetailUseCaseImpl: GetCharacterDetailUseCase,
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
@@ -33,7 +34,7 @@ class GetCharacterDetailViewModel @Inject constructor(
     }
 
     private fun getDetailCharacter(characterId: String) {
-        getCharacterDetailUseCase.invoke(characterId.toInt()).onEach { result ->
+        getCharacterDetailUseCaseImpl.invoke(characterId.toInt()).onEach { result ->
             delay(1000)
             when (result) {
                 is ApiResponse.Loading -> {

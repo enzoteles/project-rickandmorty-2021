@@ -13,6 +13,7 @@ import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSou
 import com.example.project_rickandmorty_base.data.remote.character_detail.toCharacter
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.usecase.GetListCharactersUseCase
+import com.example.project_rickandmorty_base.domain.usecase.GetListCharactersUseCaseImpl
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import com.example.project_rickandmorty_base.presentation.ui.paging.CharacterSource
 import dagger.hilt.android.lifecycle.HiltViewModel

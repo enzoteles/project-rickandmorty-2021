@@ -1,17 +1,12 @@
 package com.example.project_rickandmorty_base.domain.usecase
 
-import com.example.project_rickandmorty_base.commons.components.result
-import com.example.project_rickandmorty_base.domain.repository.CharacterRepository
-import javax.inject.Inject
+import com.example.project_rickandmorty_base.commons.components.ApiResponse
+import com.example.project_rickandmorty_base.data.remote.character_detail.Character
+import com.example.project_rickandmorty_base.data.remote.list_characters.ListCharacters
+import kotlinx.coroutines.flow.Flow
 
-class GetCharacterDetailUseCase @Inject constructor(
-    private val repository: CharacterRepository
-){
-    operator fun invoke(characterId: Int) = result {
-        repository.getCharacterDetail(characterId)
-    }
+interface GetCharacterDetailUseCase {
+
+    operator fun invoke(characterId: Int) : Flow<ApiResponse<Character?>>
+
 }
-
-
-
-

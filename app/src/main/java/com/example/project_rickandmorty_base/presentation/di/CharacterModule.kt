@@ -5,6 +5,7 @@ import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSou
 import com.example.project_rickandmorty_base.data.repository.CharacterRepositoryImpl
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.repository.CharacterRepository
+import com.example.project_rickandmorty_base.domain.usecase.*
 import com.example.project_rickandmorty_base.presentation.ui.paging.CharacterSource
 import dagger.Binds
 import dagger.Module
@@ -16,6 +17,15 @@ import dagger.hilt.android.components.ViewModelComponent
 interface CharacterModule {
 
     @Binds
-    fun bindGetCommicsRepository(repository: CharacterRepositoryImpl): CharacterRepository
+    fun bindCharacterRepository(repository: CharacterRepositoryImpl): CharacterRepository
+
+    @Binds
+    fun bindGetListCharactersUseCase(useCase: GetListCharactersUseCaseImpl): GetListCharactersUseCase
+
+    @Binds
+    fun bindGetCharacterDetailUseCase(useCase: GetCharacterDetailUseCaseImpl): GetCharacterDetailUseCase
+
+    @Binds
+    fun bindGetCharacterFilterUseCase(useCase: GetCharacterFilterUseCaseImpl): GetCharacterFilterUseCase
 
 }

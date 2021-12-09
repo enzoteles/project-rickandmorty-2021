@@ -13,6 +13,7 @@ import com.example.project_rickandmorty_base.data.datasource.RickAndMortkDataSou
 import com.example.project_rickandmorty_base.data.remote.character_detail.toCharacter
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.domain.usecase.GetCharacterFilterUseCase
+import com.example.project_rickandmorty_base.domain.usecase.GetCharacterFilterUseCaseImpl
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import com.example.project_rickandmorty_base.presentation.ui.paging.CharacterSource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GetFilterCharactersViewModel @Inject constructor(
-    private val getCharacterFilterUseCase: GetCharacterFilterUseCase,
+    private val getCharacterFilterUseCaseImpl: GetCharacterFilterUseCase,
     private val api: RickAndMortkDataSource,
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
@@ -52,7 +53,7 @@ class GetFilterCharactersViewModel @Inject constructor(
     }.flow.cachedIn(viewModelScope)
 
     fun getListCharactersFilter() {
-        getCharacterFilterUseCase.invoke(
+        getCharacterFilterUseCaseImpl.invoke(
             name = name.value,
             status = status.value,
             species = species.value,

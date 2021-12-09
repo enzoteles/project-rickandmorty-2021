@@ -9,24 +9,23 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import java.io.InputStreamReader
 
 class GetCharacterDetailUseCaseTest{
 
     lateinit var repository: FakeCharacterRepository
-    lateinit var useCase: GetCharacterDetailUseCase
+    lateinit var useCaseImpl: GetCharacterDetailUseCaseImpl
     lateinit var gson: Gson
 
     @Before
     fun setUp(){
         repository = FakeCharacterRepository()
-        useCase = GetCharacterDetailUseCase(repository)
+        useCaseImpl = GetCharacterDetailUseCaseImpl(repository)
         gson = Gson()
     }
 
     @Test
     fun `checking the api status`(): Unit = runBlocking {
-        useCase.invoke(2).onEach { result ->
+        useCaseImpl.invoke(2).onEach { result ->
             when(result){
                 is ApiResponse.Loading->{
                     assertThat(true).isTrue()

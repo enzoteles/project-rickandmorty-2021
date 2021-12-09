@@ -9,18 +9,17 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import java.io.InputStreamReader
 
 class GetListCharactersUseCaseTest{
 
     lateinit var repository: FakeCharacterRepository
-    lateinit var useCase: GetListCharactersUseCase
+    lateinit var useCase: GetListCharactersUseCaseImpl
     lateinit var gson: Gson
 
     @Before
     fun setUp(){
         repository = FakeCharacterRepository()
-        useCase = GetListCharactersUseCase(repository)
+        useCase = GetListCharactersUseCaseImpl(repository)
         gson = Gson()
     }
 
