@@ -6,4 +6,4 @@ data class InfoMapper(
     val count: String = "",
     val next: String = "",
     val pages: Int = 0,
-): Serializable
+)

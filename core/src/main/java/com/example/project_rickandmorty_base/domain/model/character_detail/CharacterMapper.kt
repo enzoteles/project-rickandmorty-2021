@@ -16,4 +16,4 @@ data class CharacterMapper(
     var status: String = "",
     var type: String = "",
     val url: String = ""
-):Serializable
+)

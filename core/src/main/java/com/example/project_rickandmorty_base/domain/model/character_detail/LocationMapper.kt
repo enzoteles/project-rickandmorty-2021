@@ -5,4 +5,4 @@ import java.io.Serializable
 data class LocationMapper(
     val name: String = "",
     val url: String = ""
-): Serializable
+)

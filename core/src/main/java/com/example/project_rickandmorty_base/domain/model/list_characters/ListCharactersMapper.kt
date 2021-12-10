@@ -6,4 +6,4 @@ import java.io.Serializable
 data class ListCharactersMapper(
     val infoRemote: InfoMapper = InfoMapper(),
     val results: List<CharacterMapper> = listOf()
-): Serializable
+)
