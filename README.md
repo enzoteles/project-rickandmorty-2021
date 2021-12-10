@@ -57,7 +57,7 @@ Telas do Projeto abaixo:
 
 <img width="386" alt="Screen Shot 2021-12-09 at 09 42 46" src="https://user-images.githubusercontent.com/5742609/145398767-4f6b544b-4708-4459-acb9-07d17efa7719.png">
 
-<img width="387" alt="Screen Shot 2021-12-09 at 09 43 10" src="https://user-images.githubusercontent.com/5742609/145398792-01f45b52-6c85-4473-8b28-eed5f762d67f.png">
+<img width="397" alt="Screen Shot 2021-12-10 at 15 24 23" src="https://user-images.githubusercontent.com/5742609/145623516-36bbff51-df58-4f06-ae80-19333935ea11.png">
 
 <img width="399" alt="Screen Shot 2021-12-02 at 17 39 50" src="https://user-images.githubusercontent.com/5742609/144499622-1e614993-f81f-4404-9eca-a3f3ef7819a6.png">
 
