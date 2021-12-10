@@ -116,4 +116,13 @@ class GetFilterCharactersViewModel @Inject constructor(
                 && _type.value?.isBlank() == true
                 && _gender.value?.isBlank() == true)
     }
+
+
+    fun cleanAllFilter(){
+        onNameChange("")
+        onStatusChange("")
+        onSpeciesChange("")
+        onTypeChange("")
+        onGenderChange("")
+    }
 }

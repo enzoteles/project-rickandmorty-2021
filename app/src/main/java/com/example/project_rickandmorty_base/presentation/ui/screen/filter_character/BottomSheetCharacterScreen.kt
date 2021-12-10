@@ -155,11 +155,7 @@ fun BottomSheetCharacterScreen(
 
                 Button(
                     onClick = {
-                        viewModel.onNameChange("")
-                        viewModel.onStatusChange("")
-                        viewModel.onSpeciesChange("")
-                        viewModel.onTypeChange("")
-                        viewModel.onGenderChange("")
+                        viewModel.cleanAllFilter()
                     },
                     modifier = Modifier
                         .weight(5.0f, true)
