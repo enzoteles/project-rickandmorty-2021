@@ -105,6 +105,7 @@ class CharacterEndToEndTest {
             .onNodeWithTag(TestTags.BS_GENDER_TEXT_FIELD)
             .performTextInput("male")
 
+        //click in button clean filter
         composeRule
             .onNodeWithTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER_CLEAN)
             .performClick()
@@ -132,11 +133,13 @@ class CharacterEndToEndTest {
             .performTextInput("male")
 
 
+        //click in filter button
         composeRule
             .onNodeWithTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER_FILTER)
             .performClick()
 
 
+        //show the character list screen
         composeRule.onNodeWithTag(TestTags.TITLE_LIST_CHARACTER_BAR).assertIsDisplayed()
 
 
