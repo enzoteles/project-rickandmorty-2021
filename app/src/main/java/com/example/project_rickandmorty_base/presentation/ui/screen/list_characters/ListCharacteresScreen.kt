@@ -95,7 +95,7 @@ fun ListCharacterLazyCollun(
         }
 
         //error
-        if (state.error.isNotBlank()) {
+        if (state.isLoading.not() && state.error.isNotBlank()) {
             Text(
                 text = state.error,
                 color = MaterialTheme.colors.error,

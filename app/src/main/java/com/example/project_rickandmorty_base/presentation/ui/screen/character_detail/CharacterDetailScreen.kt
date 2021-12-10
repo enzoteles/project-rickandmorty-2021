@@ -85,7 +85,7 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
 
         //content
         state.data?.let { character ->
-            if(state.isLoading.not()){
+            if(state.isLoading.not() && state.error.isBlank()){
                 //content
                 LazyColumn(
                     modifier = Modifier.fillMaxSize()){
@@ -203,7 +203,7 @@ fun CharacterDetailContent(viewModel: GetCharacterDetailViewModel) {
         }
 
         //error
-        if (state.error.isNotBlank()) {
+        if (state.isLoading.not() && state.error.isNotBlank()) {
             Text(
                 text = state.error,
                 color = MaterialTheme.colors.error,

@@ -70,7 +70,8 @@ class GetFilterCharactersViewModel @Inject constructor(
                 is ApiResponse.Success -> {
                     _state.value = _state.value.copy(
                         isLoading = false,
-                        data = result.data?.results?.map { it.toCharacter() }
+                        data = result.data?.results?.map { it.toCharacter() },
+                        error = ""
                     )
                 }
                 is ApiResponse.Failure -> {

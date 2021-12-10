@@ -85,7 +85,7 @@ fun ListFilterCharacterScreen(
                     }
 
                     //error
-                    if (stateModel.error.isNotBlank()) {
+                    if (stateModel.error.isNotBlank() && stateModel.isLoading.not()) {
                         Text(
                             text = "Not found character",
                             color = MaterialTheme.colors.error,

@@ -45,7 +45,8 @@ class GetCharacterDetailViewModel @Inject constructor(
                 is ApiResponse.Success -> {
                     _state.value = GenericsUiState(
                         isLoading = false,
-                        data = result.data?.toCharacter()
+                        data = result.data?.toCharacter(),
+                        error = ""
                     )
                 }
                 is ApiResponse.Failure -> {
