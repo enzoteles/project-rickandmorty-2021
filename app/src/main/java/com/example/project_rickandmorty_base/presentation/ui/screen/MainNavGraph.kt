@@ -13,8 +13,8 @@ import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.presentation.ui.screen.character_detail.CharacterDetailScreen
 import com.example.project_rickandmorty_base.presentation.ui.screen.filter_character.BottomSheetCharacterScreen
 import com.example.project_rickandmorty_base.presentation.ui.screen.filter_character.ListFilterCharacterScreen
-import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.ListCharacterLazyCollun
-import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.TopBarListCharacter
+import com.example.project_rickandmorty_base.presentation.ui.screen.list_characters.ListCharacterLazyCollun
+import com.example.project_rickandmorty_base.presentation.ui.screen.list_characters.TopBarListCharacter
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.list_characteres.GetListCharactersViewModel
 import kotlinx.coroutines.launch
@@ -51,7 +51,7 @@ internal fun MainNavGraph() {
 
 
                 Scaffold(
-                    topBar = { TopBarListCharacter{
+                    topBar = { TopBarListCharacter(viewModelFilter){
                         scope.launch {
                             if (modalBottomSheetState.isVisible.not()) {
                                 modalBottomSheetState.animateTo(ModalBottomSheetValue.Expanded)

@@ -20,8 +20,8 @@ import com.example.project_rickandmorty_base.commons.utils.TestTags
 import com.example.project_rickandmorty_base.domain.model.character_detail.CharacterMapper
 import com.example.project_rickandmorty_base.presentation.ui.components.CircularIndeterminateProgressBarComponent
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
-import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.CharacterListItem
-import com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests.TopBarListCharacter
+import com.example.project_rickandmorty_base.presentation.ui.screen.list_characters.CharacterListItem
+import com.example.project_rickandmorty_base.presentation.ui.screen.list_characters.TopBarListCharacter
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 import kotlinx.coroutines.launch
 
@@ -52,7 +52,7 @@ fun ListFilterCharacterScreen(
     ) {
         Scaffold(
             topBar = {
-                TopBarListCharacter {
+                TopBarListCharacter(viewModel) {
                     scope.launch {
                         if (modalBottomSheetState.isVisible.not()) {
                             modalBottomSheetState.animateTo(ModalBottomSheetValue.Expanded)

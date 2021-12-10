@@ -107,7 +107,7 @@ fun BottomSheetCharacterScreen(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .fillMaxWidth()
-                    .testTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER)
+                    .testTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER),
             ) {
 
                 Text(

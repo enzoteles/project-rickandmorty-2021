@@ -48,11 +48,15 @@ class GetFilterCharactersViewModel @Inject constructor(
     private val _gender: MutableLiveData<String> =  savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_GENDER, "")
     var gender: LiveData<String> = _gender
 
+    private val _btnFilter: MutableLiveData<Boolean> =  savedStateHandle.getLiveData(Constants.PARAM_CHARACTER_FILTER_BUTTOM, false)
+    var btnFilter: LiveData<Boolean> = _btnFilter
+
     val character: Flow<PagingData<CharacterMapper>> = Pager(PagingConfig(pageSize = 10)) {
         CharacterSource(api)
     }.flow.cachedIn(viewModelScope)
 
     fun getListCharactersFilter() {
+        verificationBtnFilter()
         _state.value = _state.value.copy(
             isLoading = true
         )
@@ -103,5 +107,13 @@ class GetFilterCharactersViewModel @Inject constructor(
     }
     fun onGenderChange(newGender: String){
         _gender.value = newGender
+    }
+
+    private fun verificationBtnFilter() {
+        _btnFilter.value = !(_name.value?.isBlank() == true
+                && _status.value?.isBlank() == true
+                && _species.value?.isBlank() == true
+                && _type.value?.isBlank() == true
+                && _gender.value?.isBlank() == true)
     }
 }

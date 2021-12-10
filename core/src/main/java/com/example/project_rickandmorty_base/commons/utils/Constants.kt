@@ -9,4 +9,5 @@ object Constants {
     const val PARAM_CHARACTER_FILTER_SPECIES = "characterFilterSpecies"
     const val PARAM_CHARACTER_FILTER_TYPE = "characterFilterType"
     const val PARAM_CHARACTER_FILTER_GENDER = "characterFilterGender"
+    const val PARAM_CHARACTER_FILTER_BUTTOM = "characterFilterBtn"
 }

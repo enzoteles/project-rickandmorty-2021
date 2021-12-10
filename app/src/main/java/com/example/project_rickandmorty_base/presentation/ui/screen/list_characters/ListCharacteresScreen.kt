@@ -1,4 +1,4 @@
-package com.example.project_rickandmorty_base.presentation.ui.screen.integration_tests
+package com.example.project_rickandmorty_base.presentation.ui.screen.list_characters
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -33,16 +33,20 @@ import com.example.project_rickandmorty_base.presentation.ui.components.Circular
 import com.example.project_rickandmorty_base.presentation.ui.components.GenericsUiState
 import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.screen.Screen
+import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
 fun TopBarListCharacter(
+    viewModelFilter: GetFilterCharactersViewModel,
     onClickFilter: () -> Unit
 ) {
-    val menuFilterIcon = MenuAction.Filter.icon
+    val menuFilterSelected = MenuAction.FilterSelected.icon
+    val menuFilter = MenuAction.Filter.icon
     val menuFilterLabel = MenuAction.Filter.label
+    var btnFilterState = viewModelFilter.btnFilter.value
     TopAppBar(
         title = {
             Text(text = stringResource(R.string.list_screen),
@@ -55,7 +59,11 @@ fun TopBarListCharacter(
         actions = {
             IconButton(onClick = { onClickFilter() }) {
                 Icon(
-                    painter = painterResource(id = menuFilterIcon)
+                    painter = painterResource(id = if(btnFilterState == true){
+                        menuFilterSelected
+                    }else
+                        menuFilter
+                    )
                     , contentDescription = stringResource(id = menuFilterLabel)
                 )
             }
