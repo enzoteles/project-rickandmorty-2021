@@ -53,6 +53,9 @@ class GetFilterCharactersViewModel @Inject constructor(
     }.flow.cachedIn(viewModelScope)
 
     fun getListCharactersFilter() {
+        _state.value = _state.value.copy(
+            isLoading = true
+        )
         getCharacterFilterUseCaseImpl.invoke(
             name = name.value,
             status = status.value,
