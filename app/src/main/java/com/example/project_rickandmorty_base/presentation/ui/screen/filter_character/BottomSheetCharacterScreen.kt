@@ -79,7 +79,7 @@ fun BottomSheetCharacterScreen(
                         .fillMaxWidth()
                         .testTag(TestTags.BS_NAME_TEXT_FIELD),
                     trailingIcon = {Icon(Icons.Filled.Clear,
-                        contentDescription = "clear text",
+                        contentDescription = "clear name",
                         modifier = Modifier
                             .offset(x= 10.dp)
                             .padding(end = 10.dp)
@@ -105,7 +105,7 @@ fun BottomSheetCharacterScreen(
                         .fillMaxWidth()
                         .testTag(TestTags.BS_STATUS_TEXT_FIELD),
                     trailingIcon = {Icon(Icons.Filled.Clear,
-                        contentDescription = "clear text",
+                        contentDescription = "clear status",
                         modifier = Modifier
                             .offset(x= 10.dp)
                             .padding(end = 10.dp)
@@ -131,7 +131,7 @@ fun BottomSheetCharacterScreen(
                         .fillMaxWidth()
                         .testTag(TestTags.BS_SPECIES_TEXT_FIELD),
                     trailingIcon = {Icon(Icons.Filled.Clear,
-                        contentDescription = "clear text",
+                        contentDescription = "clear species",
                         modifier = Modifier
                             .offset(x= 10.dp)
                             .padding(end = 10.dp)
@@ -157,7 +157,7 @@ fun BottomSheetCharacterScreen(
                         .fillMaxWidth()
                         .testTag(TestTags.BS_TYPE_TEXT_FIELD),
                     trailingIcon = {Icon(Icons.Filled.Clear,
-                        contentDescription = "clear text",
+                        contentDescription = "clear type",
                         modifier = Modifier
                             .offset(x= 10.dp)
                             .padding(end = 10.dp)
@@ -183,7 +183,7 @@ fun BottomSheetCharacterScreen(
                         .fillMaxWidth()
                         .testTag(TestTags.BS_GENDER_TEXT_FIELD),
                     trailingIcon = {Icon(Icons.Filled.Clear,
-                        contentDescription = "clear text",
+                        contentDescription = "clear gender",
                         modifier = Modifier
                             .offset(x= 10.dp)
                             .padding(end = 10.dp)

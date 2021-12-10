@@ -56,6 +56,61 @@ class CharacterEndToEndTest {
 
         composeRule.onNodeWithContentDescription(buttonFilter).performClick()
 
+        // insert fields
+        composeRule
+            .onNodeWithTag(TestTags.BS_NAME_TEXT_FIELD)
+            .performTextInput("rick sanchez")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_STATUS_TEXT_FIELD)
+            .performTextInput("alive")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_SPECIES_TEXT_FIELD)
+            .performTextInput("human")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_TYPE_TEXT_FIELD)
+            .performTextInput("parasite")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_GENDER_TEXT_FIELD)
+            .performTextInput("male")
+
+        // clean fields
+        composeRule.onNodeWithContentDescription("clear name").performClick()
+        composeRule.onNodeWithContentDescription("clear status").performClick()
+        composeRule.onNodeWithContentDescription("clear species").performClick()
+        composeRule.onNodeWithContentDescription("clear type").performClick()
+        composeRule.onNodeWithContentDescription("clear gender").performClick()
+
+        // insert fields again
+        composeRule
+            .onNodeWithTag(TestTags.BS_NAME_TEXT_FIELD)
+            .performTextInput("rick sanchez")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_STATUS_TEXT_FIELD)
+            .performTextInput("alive")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_SPECIES_TEXT_FIELD)
+            .performTextInput("human")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_TYPE_TEXT_FIELD)
+            .performTextInput("parasite")
+
+        composeRule
+            .onNodeWithTag(TestTags.BS_GENDER_TEXT_FIELD)
+            .performTextInput("male")
+
+        composeRule
+            .onNodeWithTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER_CLEAN)
+            .performClick()
+
+
+        // insert fields again
         composeRule
             .onNodeWithTag(TestTags.BS_NAME_TEXT_FIELD)
             .performTextInput("rick sanchez")
@@ -78,7 +133,7 @@ class CharacterEndToEndTest {
 
 
         composeRule
-            .onNodeWithTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER)
+            .onNodeWithTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER_FILTER)
             .performClick()
 
 
