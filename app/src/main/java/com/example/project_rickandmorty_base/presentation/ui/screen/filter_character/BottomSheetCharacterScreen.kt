@@ -1,9 +1,11 @@
 package com.example.project_rickandmorty_base.presentation.ui.screen.filter_character
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
@@ -12,6 +14,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -55,7 +58,16 @@ fun BottomSheetCharacterScreen(
                     label = { Text("Nome") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .testTag(TestTags.BS_NAME_TEXT_FIELD)
+                        .testTag(TestTags.BS_NAME_TEXT_FIELD),
+                    trailingIcon = {Icon(Icons.Filled.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .offset(x= 10.dp)
+                            .padding(end = 10.dp)
+                            .clickable {
+                                viewModel.onNameChange("")
+                            }
+                    )}
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
@@ -64,7 +76,16 @@ fun BottomSheetCharacterScreen(
                     label = { Text("Status") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .testTag(TestTags.BS_STATUS_TEXT_FIELD)
+                        .testTag(TestTags.BS_STATUS_TEXT_FIELD),
+                    trailingIcon = {Icon(Icons.Filled.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .offset(x= 10.dp)
+                            .padding(end = 10.dp)
+                            .clickable {
+                                viewModel.onStatusChange("")
+                            }
+                    )}
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -74,7 +95,16 @@ fun BottomSheetCharacterScreen(
                     label = { Text("Espécie") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .testTag(TestTags.BS_SPECIES_TEXT_FIELD)
+                        .testTag(TestTags.BS_SPECIES_TEXT_FIELD),
+                    trailingIcon = {Icon(Icons.Filled.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .offset(x= 10.dp)
+                            .padding(end = 10.dp)
+                            .clickable {
+                                viewModel.onSpeciesChange("")
+                            }
+                    )}
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -84,7 +114,16 @@ fun BottomSheetCharacterScreen(
                     label = { Text("Tipo") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .testTag(TestTags.BS_TYPE_TEXT_FIELD)
+                        .testTag(TestTags.BS_TYPE_TEXT_FIELD),
+                    trailingIcon = {Icon(Icons.Filled.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .offset(x= 10.dp)
+                            .padding(end = 10.dp)
+                            .clickable {
+                                viewModel.onTypeChange("")
+                            }
+                    )}
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -94,27 +133,65 @@ fun BottomSheetCharacterScreen(
                     label = { Text("Sexo") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .testTag(TestTags.BS_GENDER_TEXT_FIELD)
+                        .testTag(TestTags.BS_GENDER_TEXT_FIELD),
+                    trailingIcon = {Icon(Icons.Filled.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .offset(x= 10.dp)
+                            .padding(end = 10.dp)
+                            .clickable {
+                            viewModel.onGenderChange("")
+                        }
+                    )}
                 )
 
             }
-
-            Button(
-                onClick = {
-                    viewModel.getListCharactersFilter()
-                    onclick()
-                          },
+            Row (
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)
                     .fillMaxWidth()
-                    .testTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER),
-            ) {
+                    .padding(start = 8.dp, end = 8.dp)
+                    .align(Alignment.BottomEnd)
+                    ){
 
-                Text(
-                    text = stringResource(id = R.string.btn_filter_character),
-                    fontSize = 18.sp
+                Button(
+                    onClick = {
+                        viewModel.onNameChange("")
+                        viewModel.onStatusChange("")
+                        viewModel.onSpeciesChange("")
+                        viewModel.onTypeChange("")
+                        viewModel.onGenderChange("")
+                    },
+                    modifier = Modifier
+                        .weight(5.0f, true)
+                        .fillMaxWidth()
+                        .testTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER_CLEAN),
+                ) {
+
+                    Text(
+                        text = stringResource(id = R.string.btn_clean_character),
+                        fontSize = 18.sp
                     )
+                }
+
+                Button(
+                    onClick = {
+                        viewModel.getListCharactersFilter()
+                        onclick()
+                    },
+                    modifier = Modifier
+                        .weight(5.0f, true)
+                        .fillMaxWidth()
+                        .padding(start = 8.dp)
+                        .testTag(TestTags.BTN_BOTTOM_SHEET_CHARACTER_FILTER),
+                ) {
+
+                    Text(
+                        text = stringResource(id = R.string.btn_filter_character),
+                        fontSize = 18.sp
+                    )
+                }
             }
+
     }
 }
 

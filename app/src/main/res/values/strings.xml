@@ -7,7 +7,8 @@
 
     <string name="icon_filter_unselected">Filter_Unselected</string>
     <string name="icon_filter_selected">Filter_Selected</string>
-    <string name="btn_filter_character">Filtrar Character</string>
+    <string name="btn_filter_character">Filtrar</string>
+    <string name="btn_clean_character">Limpar</string>
 
 
 

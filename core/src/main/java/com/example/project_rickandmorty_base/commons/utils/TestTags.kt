@@ -13,7 +13,8 @@ object TestTags {
     const val CHARACTER_ITEM_SELECTED_FILTER = "CHARACTER_ITEM_SELECTED_FILTER"
 
     //Bottom Sheet Character
-    const val BTN_BOTTOM_SHEET_CHARACTER = "Filtrar Character"
+    const val BTN_BOTTOM_SHEET_CHARACTER_FILTER = "Filtrar"
+    const val BTN_BOTTOM_SHEET_CHARACTER_CLEAN = "Limpar"
     const val BS_NAME_TEXT_FIELD = "BS_NAME_TEXT_FIELD"
     const val BS_STATUS_TEXT_FIELD = "BS_STATUS_TEXT_FIELD"
     const val BS_SPECIES_TEXT_FIELD = "BS_SPECIES_TEXT_FIELD"
