@@ -2,7 +2,10 @@ package com.example.project_rickandmorty_base.presentation.ui.screen.filter_char
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -12,11 +15,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,6 +42,7 @@ import com.example.project_rickandmorty_base.domain.model.character_detail.Chara
 import com.example.project_rickandmorty_base.presentation.ui.components.topbar.MenuAction
 import com.example.project_rickandmorty_base.presentation.ui.viewmodel.filter_character.GetFilterCharactersViewModel
 
+@ExperimentalComposeUiApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
@@ -52,6 +67,10 @@ fun BottomSheetCharacterScreen(
         ) {
             Column {
 
+                val (focusRequester) = FocusRequester.createRefs()
+                val keyboardController = LocalSoftwareKeyboardController.current
+                val focusManager = LocalFocusManager.current
+
                 OutlinedTextField(
                     value = name,
                     onValueChange = { viewModel.onNameChange(it) },
@@ -67,7 +86,15 @@ fun BottomSheetCharacterScreen(
                             .clickable {
                                 viewModel.onNameChange("")
                             }
-                    )}
+                    )},
+                    keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Next
+                        ),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down)}
+                    )
+
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
@@ -85,7 +112,14 @@ fun BottomSheetCharacterScreen(
                             .clickable {
                                 viewModel.onStatusChange("")
                             }
-                    )}
+                    )},
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down)}
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -104,7 +138,14 @@ fun BottomSheetCharacterScreen(
                             .clickable {
                                 viewModel.onSpeciesChange("")
                             }
-                    )}
+                    )},
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down)}
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -123,7 +164,14 @@ fun BottomSheetCharacterScreen(
                             .clickable {
                                 viewModel.onTypeChange("")
                             }
-                    )}
+                    )},
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down)}
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -142,7 +190,12 @@ fun BottomSheetCharacterScreen(
                             .clickable {
                             viewModel.onGenderChange("")
                         }
-                    )}
+                    )},
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = { keyboardController?.hide()}
+                    ),
+
                 )
 
             }
