@@ -5,6 +5,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -36,6 +37,7 @@ class ListCharacteresScreenTest{
     @get:Rule (order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @ExperimentalComposeUiApi
     @ExperimentalCoilApi
     @ExperimentalFoundationApi
     @Before

@@ -7,6 +7,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.ExperimentalComposeUiApi
 import coil.annotation.ExperimentalCoilApi
 import com.example.project_rickandmorty_base.presentation.ui.screen.MainNavGraph
 import com.example.projeto_marvel.presentation.ui.theme.ProjetoRickAndMorkTheme
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity: ComponentActivity() {
 
+    @ExperimentalComposeUiApi
     @ExperimentalMaterialApi
     @ExperimentalCoilApi
     @ExperimentalFoundationApi
